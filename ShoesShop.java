@@ -6,47 +6,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
+import controllers.ControllerProduct;
 import controllers.ShopController;
+import views.ViewProduct;
 import views.ViewShop;
 
-public class ListOfShops implements Serializable{
-	
-	private ArrayList<Shop> models;
-	private ArrayList<ViewShop> views;
-	private ArrayList<ShopController> controllers;
-	//private static final long serialVersionUID = 1L;
+public class ShoesShop extends Shop{
 
-	
-	public ListOfShops() {
-		this.models = new ArrayList<Shop>();
-		this.views = new ArrayList<ViewShop>();
-		this.controllers = new ArrayList<ShopController>();
-	}
-	
-	public void setShop(Shop m, ViewShop v, ShopController c) {
-		this.models.add(m);
-		this.views.add(v);
-		this.controllers.add(c);
-	}
-	
-	public Shop getModel(int i) {
-		return this.models.get(i);
-	}
-	
-	public ShopController getController(int i) {
-		return this.controllers.get(i);
-	}
-	
+	@Override
 	public void save() {
-		
+		// TODO Auto-generated method stub
 		try {
-			FileOutputStream file = new FileOutputStream("listModels");
+			FileOutputStream file = new FileOutputStream("listModels1");
 			ObjectOutputStream oos = new ObjectOutputStream(file);
 			//System.out.println(this.listeAdherents);
-			oos.writeObject(this.models);
+			oos.writeObject(this.getProducts());
 			/*for(Adherent a : this.listeAdherents) {
 				oos.writeObject(a);
 			}*/
@@ -58,10 +34,10 @@ public class ListOfShops implements Serializable{
 		}
 		
 		try {
-			FileOutputStream file = new FileOutputStream("listControllers");
+			FileOutputStream file = new FileOutputStream("listControllers1");
 			ObjectOutputStream oos = new ObjectOutputStream(file);
 			//System.out.println(this.listeAdherents);
-			oos.writeObject(this.controllers);
+			oos.writeObject(this.getCP());
 			/*for(Adherent a : this.listeAdherents) {
 				oos.writeObject(a);
 			}*/
@@ -73,10 +49,10 @@ public class ListOfShops implements Serializable{
 		}
 		
 		try {
-			FileOutputStream file = new FileOutputStream("listViews");
+			FileOutputStream file = new FileOutputStream("listViews1");
 			ObjectOutputStream oos = new ObjectOutputStream(file);
 			//System.out.println(this.listeAdherents);
-			oos.writeObject(this.views);
+			oos.writeObject(this.getVP());
 			/*for(Adherent a : this.listeAdherents) {
 				oos.writeObject(a);
 			}*/
@@ -86,14 +62,14 @@ public class ListOfShops implements Serializable{
 		}catch(IOException ioe) {
 			ioe.printStackTrace();
 		}
+		
 	}
-	
 	
 	public void load() {
 		try {
-			FileInputStream file = new FileInputStream("listModels");
+			FileInputStream file = new FileInputStream("listModels1");
 			ObjectInputStream ois = new ObjectInputStream(file);
-			this.models = (ArrayList<Shop>)ois.readObject();
+			this.products = (ArrayList<ModelProduct>)ois.readObject();
 			ois.close();
 			file.close();
 		}catch(ClassNotFoundException c){
@@ -109,9 +85,9 @@ public class ListOfShops implements Serializable{
 		}
 		
 		try {
-			FileInputStream file = new FileInputStream("listControllers");
+			FileInputStream file = new FileInputStream("listControllers1");
 			ObjectInputStream ois = new ObjectInputStream(file);
-			this.controllers = (ArrayList<ShopController>)ois.readObject();
+			this.controllers = (ArrayList<ControllerProduct>)ois.readObject();
 			ois.close();
 			file.close();
 		}catch(ClassNotFoundException c){
@@ -127,9 +103,9 @@ public class ListOfShops implements Serializable{
 		}
 		
 		try {
-			FileInputStream file = new FileInputStream("listViews");
+			FileInputStream file = new FileInputStream("listViews1");
 			ObjectInputStream ois = new ObjectInputStream(file);
-			this.views = (ArrayList<ViewShop>)ois.readObject();
+			this.views = (ArrayList<ViewProduct>)ois.readObject();
 			ois.close();
 			file.close();
 		}catch(ClassNotFoundException c){
@@ -143,14 +119,6 @@ public class ListOfShops implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public String toString() {
-		String s = "";
-		for(ModelProduct p:this.models.get(0).getProducts()) {
-			s = s+p.getName()+"\n";
-		}
-		return s;
 	}
 
 }

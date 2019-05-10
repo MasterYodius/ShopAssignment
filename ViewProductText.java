@@ -1,4 +1,5 @@
 package views;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import controllers.ControllerProduct;
@@ -6,10 +7,12 @@ import models.ModelProduct;
 import models.ModelSubjectProduct;
 import models.Observateur;
 
-public class ViewProductText implements ViewProduct,Observateur{
+public class ViewProductText implements ViewProduct,Observateur,Serializable{
 	
 	private ControllerProduct controller;
 	private ModelProduct model;
+	private static final long serialVersionUID = 1L;
+
 	
 	public ViewProductText(ControllerProduct aController, ModelSubjectProduct aModel) {
 		// TODO Auto-generated constructor stub

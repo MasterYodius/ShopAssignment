@@ -2,11 +2,20 @@ import controllers.ControllerProduct;
 import controllers.ControllerShoe;
 import controllers.ShopController;
 import controllers.ShoppingCartController;
+import models.Admin;
+import models.CarShop;
+import models.Customer;
+import models.ListOfAdmin;
+import models.ListOfCustomers;
+import models.ListOfShops;
 import models.ModelProduct;
 import models.Product;
+import models.ShoesShop;
 import models.ModelSubjectProduct;
+import models.PhoneShop;
 import models.Shop;
 import models.ShoppingCart;
+import views.LoginWinView;
 import views.ShoppingCartView;
 import views.ViewProduct;
 import views.ViewProductText;
@@ -16,38 +25,67 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ModelProduct m1 = new Product(0,"test",125,3);
-		ControllerProduct c1 = new ControllerShoe((ModelSubjectProduct) m1);
-		ViewProduct v1 = new ViewProductText(c1, (ModelSubjectProduct) m1);
+		ListOfAdmin listA = new ListOfAdmin();
+		ListOfCustomers listC = new ListOfCustomers();
+		Admin a1 = new Admin("alex", "Paris", "email", "alex","aaa" );
+		Customer c1 = new Customer("kevin","Hong Kong","email","kev","azerty");
+		ListOfShops listShops = new ListOfShops();
 		
-		ModelProduct m2 = new Product(1, "test2", 500, 2);
-		ControllerProduct c2 = new ControllerShoe((ModelSubjectProduct) m2);
-		ViewProduct v2 = new ViewProductText(c2, (ModelSubjectProduct) m2);
 		
-		/*Shop s1 = new Shop();
+		ShoesShop s1 = new ShoesShop();
+		
+		
+		PhoneShop s2 = new PhoneShop();
+		
+		
+		CarShop s3 = new CarShop();
+		
+		
+		
+		/*listShops.setShop(s1, sv1, sc1);
+		listShops.setShop(s2, sv2, sc2);
+		listShops.setShop(s3, sv3, sc3);
+		
+		*/
+		listA.addAdmin(a1);
+		listC.addCustomer(c1);
+	//	listShops.load();
+		
+		s1.load();
 		ShopController sc1 = new ShopController(s1);
 		ViewShop sv1 = new ViewShop(sc1, s1);
-		
-		sc1.addProduct(m1, c1, v1);
-		sc1.addProduct(m2, c2, v2);
 		sc1.setView(sv1);
-		sv1.displayProducts();
-		*/
-		
-		ShoppingCart cart = new ShoppingCart();
-		ShoppingCartController cartC = new ShoppingCartController(cart);
-		ShoppingCartView cartV = new ShoppingCartView(cart, cartC);
-		cartC.setView(cartV);
-		
-		cartC.addProduct((Product) m1, c1, v1);
-		
-		System.out.println("--------------------------");
-		cartC.addProduct(m2, c2, v2);
 		
 		
+		s2.load();
+		ShopController sc2 = new ShopController(s2);
+		ViewShop sv2 = new ViewShop(sc2, s2);
+		sc2.setView(sv2);
 		
-	//	c1.setView(v1);
-		//v1.activateView();
+		s3.load();
+		ShopController sc3 = new ShopController(s3);
+		ViewShop sv3 = new ViewShop(sc3, s3);
+		sc3.setView(sv3);
+		//listShops.getController(0).activateView();
+		
+		
+		
+		/*ModelProduct p1 = new Product("test2", 142, 4);
+		ControllerProduct c15 = new ControllerShoe((ModelSubjectProduct) p1);
+		ViewProduct v1 = new ViewProductText(c15, (ModelSubjectProduct) p1);
+		c15.setView(v1);
+		v1.activateView();
+		listShops.getModel(0).addProduct(p1, c15, v1);
+		listShops.save();*/
+		
+		//listShops.getController(0).activateView();
+		
+		
+		LoginWinView l1 = new LoginWinView( s1,s2,s3,listA, listC,sc1,sc2,sc3);
+		//System.out.println(listShops.toString());
+		
+		
+		
 		
 	}
 

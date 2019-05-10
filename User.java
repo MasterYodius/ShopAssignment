@@ -16,6 +16,14 @@ public abstract class User {
 		this.password = p;
 		
 	}
+	
+	public User() {
+		this.name = "alex";
+		this.address = "a";
+		this.mail = "m";
+		this.id = "alex";
+		this.password = "aaa";
+	}
 
 	public String getName() {
 		return name;

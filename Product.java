@@ -1,29 +1,36 @@
 package models;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product implements ModelSubjectProduct{
+public class Product implements ModelSubjectProduct,Serializable{
 	
-	private int id;
+	private int id ;
 	private String name;
 	private double price;
 	private int quantity;
 	private ArrayList<Observateur> observateurs;
+	private static int count = 0;
+	//private static final long serialVersionUID = 1L;
+
 	
 	public Product() {
-		this.id = 0;
+		id=count;
 		this.name = "";
 		this.price = 0;
 		this.quantity = 0;
 		this.observateurs = new ArrayList<Observateur>();
+		count++;
 		
 	}
 	
-	public Product(int i, String n, double p, int q) {
-		this.id = i;
+	public Product( String n, double p, int q) {
+		id=count;
 		this.name = n;
 		this.price = p;
 		this.quantity = q;
 		this.observateurs = new ArrayList<Observateur>();
+		count++;
+		
 		
 	}
 	
@@ -80,6 +87,12 @@ public class Product implements ModelSubjectProduct{
 		this.price = nPrice;
 		this.quantity = nQuantity;
 		
+	}
+
+	@Override
+	public void increaseQuantity(int n) {
+		// TODO Auto-generated method stub
+		this.quantity = this.quantity + n;
 	}
 	
 

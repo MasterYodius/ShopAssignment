@@ -7,8 +7,12 @@ public class Admin extends User{
 		
 	}
 	
-	public Product createProduct(int id, String name, double price,int quantity) {
-		ModelProduct m1 = new Product(id,name,price,quantity);
+	public Admin() {
+		
+	}
+	
+	public Product createProduct( String name, double price,int quantity) {
+		ModelProduct m1 = new Product(name,price,quantity);
 		return (Product) m1;
 	}
 	

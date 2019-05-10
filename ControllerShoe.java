@@ -1,13 +1,17 @@
 package controllers;
+import java.io.Serializable;
+
 import models.ModelProduct;
 import models.ModelSubjectProduct;
 import models.Observateur;
 import views.ViewProduct;
 
-public class ControllerShoe implements Observateur,ControllerProduct{
+public class ControllerShoe implements Observateur,ControllerProduct,Serializable{
 	
 	private ModelProduct model;
 	private ViewProduct view;
+	private static final long serialVersionUID = 1L;
+
 	
 	public ControllerShoe(ModelSubjectProduct aModel) {
 		this.model = aModel;

@@ -7,11 +7,22 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 
+import controllers.ControllerProduct;
+import controllers.ControllerShoe;
+import controllers.ShopController;
 //import jdk.nashorn.internal.runtime.ListAdapter;
 import models.Admin;
+import models.CarShop;
 import models.Customer;
 import models.ListOfAdmin;
 import models.ListOfCustomers;
+import models.ListOfShops;
+import models.ModelProduct;
+import models.ModelSubjectProduct;
+import models.PhoneShop;
+import models.Product;
+import models.ShoesShop;
+import models.Shop;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -27,11 +38,12 @@ public class LoginWinView {
 	private JTextField textFieldUserId;
 	private JTextField textFieldPassword;
 	
+	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -44,18 +56,17 @@ public class LoginWinView {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public LoginWinView() {
-		Admin a1 = new Admin("alex", "Paris", "email", "alex","aaa" );
-		Customer c1 = new Customer("kevin","Hong Kong","email","kev","azerty");
+	public LoginWinView(ShoesShop sShop, PhoneShop pShop, CarShop cShop, ListOfAdmin listA, ListOfCustomers listC,ShopController sc1,ShopController sc2,ShopController sc3) {
 		
 		
 		
-		ListOfAdmin listA = new ListOfAdmin();
+		
+		/*ListOfAdmin listA = new ListOfAdmin();
 		ListOfCustomers listC = new ListOfCustomers();
 		
 		
@@ -63,14 +74,51 @@ public class LoginWinView {
 		listC.addCustomer(c1);
 		
 		
+		ModelProduct m1 = new Product("test",125,3);
+		ControllerProduct cp1 = new ControllerShoe((ModelSubjectProduct) m1);
+		ViewProduct v1 = new ViewProductText(cp1, (ModelSubjectProduct) m1);
 		
-		initialize(listA,listC);
+		ModelProduct m2 = new Product( "test2", 500, 2);
+		ControllerProduct c2 = new ControllerShoe((ModelSubjectProduct) m2);
+		ViewProduct v2 = new ViewProductText(c2, (ModelSubjectProduct) m2);
+		
+		
+		
+		Shop s1 = new Shop();
+		ShopController sc1 = new ShopController(s1);
+		ViewShop sv1 = new ViewShop(sc1, s1);
+		sc1.setView(sv1);
+		
+		Shop s2 = new Shop();
+		ShopController sc2 = new ShopController(s2);
+		ViewShop sv2 = new ViewShop(sc2, s2);
+		sc2.setView(sv2);
+		
+		Shop s3 = new Shop();
+		ShopController sc3 = new ShopController(s3);
+		ViewShop sv3 = new ViewShop(sc1, s3);
+		sc1.setView(sv3);
+		
+		sc1.addProduct(m1, cp1, v1);
+		sc1.addProduct(m2, c2, v2);
+		
+		
+		
+		listShops.setShop(s1, sv1, sc1);
+		listShops.setShop(s2, sv2, sc2);
+		listShops.setShop(s3, sv3, sc3);
+		*/
+		
+		
+		
+		initialize(listA,listC,sShop,pShop,cShop,sc1,sc2,sc3);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(ListOfAdmin la, ListOfCustomers lc) {
+	private void initialize(ListOfAdmin la, ListOfCustomers lc,ShoesShop sShop, PhoneShop pShop, CarShop cShop,ShopController sc1,ShopController sc2,ShopController sc3) {
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -129,7 +177,10 @@ public class LoginWinView {
 				if(comboBoxTypeofUser.getSelectedItem().equals("Admin")) {
 					if(la.check_user(user, pass) == true) {
 						
-						AllShopsWinView secondWin = new AllShopsWinView();
+						//AllShopsWinCustomerView secondWin = new AllShopsWinCustomerView();
+						Admin a = new Admin();
+						AdminHomeView window = new AdminHomeView( sShop,pShop,cShop,sc1,sc2,sc3,a);
+						frame.dispose();
 					}
 					else {
 						test.setText("Error");
@@ -139,7 +190,8 @@ public class LoginWinView {
 				else if(comboBoxTypeofUser.getSelectedItem().equals("Customer")) {
 					if(lc.check_user(user, pass) == true) {
 						
-						AllShopsWinView secondWin = new AllShopsWinView();
+						AllShopsWinCustomerView secondWin = new AllShopsWinCustomerView( sShop,pShop,cShop,sc1,sc2,sc3);
+						frame.dispose();
 						
 						
 					}
@@ -155,6 +207,7 @@ public class LoginWinView {
 		});
 		btnLogin.setBounds(182, 148, 65, 23);
 		panel_1.add(btnLogin);
+		frame.setVisible(true);
 		
 		
 	}
