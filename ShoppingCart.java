@@ -28,11 +28,40 @@ public class ShoppingCart {
 		return this.views;
 	}
 	
+	public Product getProduct(String name) {
+		Product res = null;
+		for(Product p:this.products) {
+			if(p.getName().equals(name)) {
+				res = p;
+				break;
+			}
+		}
+		return res;
+	}
+	
 	public void updCart(ModelProduct m2, ViewProduct v, ControllerProduct c) {
 		this.products.add((Product) m2);
 		this.views.add(v);
 		this.controllersProduct.add(c);
 		
+	}
+	
+	public void remove(Product p) {
+		//int i = 0;
+		this.products.remove(p);
+		
+	}
+	
+	public void removeAll() {
+		this.products.clear();
+	}
+	
+	public double totalPrice() {
+		double sum = 0;
+		for(Product p:products) {
+			sum += p.getPrice();
+		}
+		return sum;
 	}
 
 }

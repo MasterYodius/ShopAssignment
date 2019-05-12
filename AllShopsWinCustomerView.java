@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import controllers.ControllerProduct;
 import controllers.ControllerShoe;
 import controllers.ShopController;
+import controllers.ShoppingCartController;
 import models.CarShop;
 import models.ListOfShops;
 import models.ModelProduct;
@@ -16,6 +17,8 @@ import models.PhoneShop;
 import models.Product;
 import models.ShoesShop;
 import models.Shop;
+import models.ShoppingCart;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -100,6 +103,8 @@ public class AllShopsWinCustomerView {
 	 */
 	private void initialize(ShoesShop sShop, PhoneShop pShop, CarShop cShop,ShopController sc1,ShopController sc2,ShopController sc3) {
 		//listShops.load();
+		ShoppingCart cart = new ShoppingCart();
+		ShoppingCartController cartc = new ShoppingCartController(cart);
 		frame = new JFrame();
 		frame.setBounds(100, 100, 555, 390);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +113,7 @@ public class AllShopsWinCustomerView {
 		JButton phoneButton = new JButton("");
 		phoneButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewShopGraphInterface win = new ViewShopGraphInterface(sc2,pShop);
+				ViewShopGraphInterface win = new ViewShopGraphInterface(sc2,pShop,cartc);
 			}
 		});
 		phoneButton.setIcon(new ImageIcon("C:\\Users\\alex-\\OneDrive\\Bureau\\UML_Assessement\\Shopping\\images\\Mobile-Smartphone-icon.png"));
@@ -119,7 +124,7 @@ public class AllShopsWinCustomerView {
 		JButton shoesButton = new JButton("");
 		shoesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewShopGraphInterface win = new ViewShopGraphInterface(sc1, sShop);
+				ViewShopGraphInterface win = new ViewShopGraphInterface(sc1, sShop,cartc);
 			}
 		});
 		shoesButton.setIcon(new ImageIcon("C:\\Users\\alex-\\OneDrive\\Bureau\\UML_Assessement\\Shopping\\images\\Running-Shoes-icon.png"));
@@ -130,7 +135,7 @@ public class AllShopsWinCustomerView {
 		JButton carButton = new JButton("");
 		carButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewShopGraphInterface win = new ViewShopGraphInterface(sc3, cShop);
+				ViewShopGraphInterface win = new ViewShopGraphInterface(sc3, cShop,cartc);
 			}
 		});
 		carButton.setIcon(new ImageIcon("C:\\Users\\alex-\\OneDrive\\Bureau\\UML_Assessement\\Shopping\\images\\car-icon.png"));
@@ -156,6 +161,11 @@ public class AllShopsWinCustomerView {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton basketButton = new JButton("");
+		basketButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShoppingCartWinView window = new ShoppingCartWinView(cart, cartc);
+			}
+		});
 		basketButton.setIcon(new ImageIcon("C:\\Users\\alex-\\OneDrive\\Bureau\\UML_Assessement\\Shopping\\images\\shopping-basket-icon.png"));
 		basketButton.setBounds(216, 213, 117, 73);
 		frame.getContentPane().add(basketButton);

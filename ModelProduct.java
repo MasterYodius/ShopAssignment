@@ -7,6 +7,6 @@ public interface ModelProduct {
 	abstract int getQuantity();
 	abstract void increaseQuantity(int n);
 	
-	void updProduct(int nId, String nName, float nPrice, int nQuantity);
+	void updProduct(int nId, String nName, double nPrice, int nQuantity);
 	
 }

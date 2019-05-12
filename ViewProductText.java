@@ -102,4 +102,5 @@ public class ViewProductText implements ViewProduct,Observateur,Serializable{
 
 
 
+
 }

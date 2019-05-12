@@ -81,6 +81,11 @@ public class AdminHomeView {
 		frame.getContentPane().add(deleteButton);
 		
 		JButton editButton = new JButton("Edit a product");
+		editButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditView window = new EditView(sShop, pShop, cShop, sc1, sc2, sc3);
+			}
+		});
 		editButton.setFont(new Font("Sitka Small", Font.BOLD, 13));
 		editButton.setBounds(28, 227, 188, 49);
 		frame.getContentPane().add(editButton);

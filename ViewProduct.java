@@ -13,4 +13,5 @@ public interface ViewProduct {
 	
 	void activateView();
 	
+	
 }

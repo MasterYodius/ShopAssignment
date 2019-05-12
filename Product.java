@@ -80,7 +80,7 @@ public class Product implements ModelSubjectProduct,Serializable{
 	}
 
 	@Override
-	public void updProduct(int nId, String nName, float nPrice, int nQuantity) {
+	public void updProduct(int nId, String nName, double nPrice, int nQuantity) {
 		// TODO Auto-generated method stub
 		this.id = nId;
 		this.name = nName;
