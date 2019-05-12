@@ -72,6 +72,19 @@ public abstract class Shop implements Serializable{
 		this.views.add(v);
 	}
 	
+	public void removeProduct(String name) {
+		int i = 0;
+		for(ModelProduct p:this.products) {
+			if(p.getName().equals(name)) {
+				break;
+			}
+			i++;
+		}
+		this.products.remove(i);
+		this.controllers.remove(i);
+		this.views.remove(i);
+	}
+	
 	
 public abstract void save();
 public abstract void load();

@@ -71,6 +71,11 @@ public class AdminHomeView {
 		frame.getContentPane().add(addButton);
 		
 		JButton deleteButton = new JButton("Remove a product");
+		deleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RemoveWinView window = new RemoveWinView(sShop,pShop,cShop);
+			}
+		});
 		deleteButton.setFont(new Font("Sitka Small", Font.BOLD, 13));
 		deleteButton.setBounds(28, 167, 188, 49);
 		frame.getContentPane().add(deleteButton);

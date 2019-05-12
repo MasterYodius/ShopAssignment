@@ -117,12 +117,12 @@ public class AddProductView {
 		
 		JLabel errorQuantity = new JLabel("");
 		errorQuantity.setForeground(Color.RED);
-		errorQuantity.setBounds(386, 248, 48, 14);
+		errorQuantity.setBounds(357, 241, 165, 14);
 		frame.getContentPane().add(errorQuantity);
 		
 		JLabel errorPrice = new JLabel("");
 		errorPrice.setForeground(Color.RED);
-		errorPrice.setBounds(386, 204, 48, 14);
+		errorPrice.setBounds(357, 202, 165, 14);
 		frame.getContentPane().add(errorPrice);
 		
 		
@@ -131,63 +131,93 @@ public class AddProductView {
 		frame.getContentPane().add(textFieldQuantity);
 		textFieldQuantity.setColumns(10);
 		
+		
+		JLabel errorName = new JLabel("");
+		errorName.setForeground(Color.RED);
+		errorName.setBounds(357, 163, 165, 14);
+		frame.getContentPane().add(errorName);
+		
 		JButton submitButton = new JButton("Submit");
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBoxShop.getSelectedItem().equals("Shoes Shop")) {
-					if(sShop.check_already_exist(textFieldName.getText())) {
-						sShop.getProduct_by_name(textFieldName.getText()).increaseQuantity(Integer.parseInt(textFieldQuantity.getText()));
+				
+				if(textFieldName.getText().equals("") || textFieldPrice.getText().equals("") || textFieldQuantity.getText().equals("")) {
+					if(textFieldName.getText().equals("")) {
+						errorName.setText("You must choose a name");
 					}
-					
-					else{
-						System.out.println("OOOOOOOOOOOOOOOOK");
-						ModelProduct m = a.createProduct(textFieldName.getText(), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldQuantity.getText()));
-						ControllerProduct c = new ControllerShoe((ModelSubjectProduct) m);
-						ViewProduct v = new ViewProductText(c, (ModelSubjectProduct) m);
-						
-						c.setView(v);
-						v.activateView();
-						
-						
-						sc1.addProduct(m, c, v);
-						//System.out.println(listShops.toString());
-						sShop.save();
-						//listShops.getController(0).activateView();
-						//frame.dispose();
+					else
+						errorName.setText("");;
+					if(textFieldPrice.getText().equals("")) {
+						errorPrice.setText("You must choose a price");
 					}
+					else
+						errorPrice.setText("");
+					if(textFieldQuantity.getText().equals("")) {
+						errorQuantity.setText("You must choose a quantity");
+					}
+					else
+						errorQuantity.setText("");
 				}
 				
-				else if(comboBoxShop.getSelectedItem().equals("Phones Shop")) {
-					if(pShop.check_already_exist(textFieldName.getText())) {
-						pShop.getProduct_by_name(textFieldName.getText()).increaseQuantity(Integer.parseInt(textFieldQuantity.getText()));
-					}
-					
-					else{
-						ModelProduct m = a.createProduct(textFieldName.getText(), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldQuantity.getText()));
-						ControllerProduct c = new ControllerShoe((ModelSubjectProduct) m);
-						ViewProduct v = new ViewProductText(c, (ModelSubjectProduct) m);
-						
-						
-						sc2.addProduct(m, c, v);
-						pShop.save();
-						frame.dispose();
-					}
-				}
 				
-				else if(comboBoxShop.getSelectedItem().equals("Cars Shop")) {
-					if(cShop.check_already_exist(textFieldName.getText())) {
-						cShop.getProduct_by_name(textFieldName.getText()).increaseQuantity(Integer.parseInt(textFieldQuantity.getText()));
+				
+				else {
+				
+					if(comboBoxShop.getSelectedItem().equals("Shoes Shop")) {
+						if(sShop.check_already_exist(textFieldName.getText())) {
+							sShop.getProduct_by_name(textFieldName.getText()).increaseQuantity(Integer.parseInt(textFieldQuantity.getText()));
+						}
+						
+						else{
+							System.out.println("OOOOOOOOOOOOOOOOK");
+							ModelProduct m = a.createProduct(textFieldName.getText(), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldQuantity.getText()));
+							ControllerProduct c = new ControllerShoe((ModelSubjectProduct) m);
+							ViewProduct v = new ViewProductText(c, (ModelSubjectProduct) m);
+							
+							c.setView(v);
+							v.activateView();
+							
+							
+							sc1.addProduct(m, c, v);
+							//System.out.println(listShops.toString());
+							sShop.save();
+							//listShops.getController(0).activateView();
+							//frame.dispose();
+						}
 					}
 					
-					else{
-						ModelProduct m = a.createProduct(textFieldName.getText(), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldQuantity.getText()));
-						ControllerProduct c = new ControllerShoe((ModelSubjectProduct) m);
-						ViewProduct v = new ViewProductText(c, (ModelSubjectProduct) m);
+					else if(comboBoxShop.getSelectedItem().equals("Phones Shop")) {
+						if(pShop.check_already_exist(textFieldName.getText())) {
+							pShop.getProduct_by_name(textFieldName.getText()).increaseQuantity(Integer.parseInt(textFieldQuantity.getText()));
+						}
 						
+						else{
+							ModelProduct m = a.createProduct(textFieldName.getText(), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldQuantity.getText()));
+							ControllerProduct c = new ControllerShoe((ModelSubjectProduct) m);
+							ViewProduct v = new ViewProductText(c, (ModelSubjectProduct) m);
+							
+							
+							sc2.addProduct(m, c, v);
+							pShop.save();
+							frame.dispose();
+						}
+					}
+					
+					else if(comboBoxShop.getSelectedItem().equals("Cars Shop")) {
+						if(cShop.check_already_exist(textFieldName.getText())) {
+							cShop.getProduct_by_name(textFieldName.getText()).increaseQuantity(Integer.parseInt(textFieldQuantity.getText()));
+						}
 						
-						sc3.addProduct(m, c, v);
-						cShop.save();
-						frame.dispose();
+						else{
+							ModelProduct m = a.createProduct(textFieldName.getText(), Double.parseDouble(textFieldPrice.getText()), Integer.parseInt(textFieldQuantity.getText()));
+							ControllerProduct c = new ControllerShoe((ModelSubjectProduct) m);
+							ViewProduct v = new ViewProductText(c, (ModelSubjectProduct) m);
+							
+							
+							sc3.addProduct(m, c, v);
+							cShop.save();
+							frame.dispose();
+						}
 					}
 				}
 			}
@@ -205,6 +235,8 @@ public class AddProductView {
 		cancelButton.setFont(new Font("Tahoma", Font.BOLD, 20));
 		cancelButton.setBounds(283, 311, 132, 47);
 		frame.getContentPane().add(cancelButton);
+		
+		
 		
 		
 		frame.setVisible(true);
